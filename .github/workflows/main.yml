@@ -1,0 +1,55 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Setup env
+        run: |
+          cat << EOF > .env
+          REACT_APP_FIREBASE_DOMAIN="fdc-office-a96e1.firebaseapp.com"
+          REACT_APP_FIREBASE_DATABASE="https://fdc-office-a96e1-default-rtdb.europe-west1.firebasedatabase.app"
+          REACT_APP_FIREBASE_PROJECT_ID="fdc-office-a96e1"
+          REACT_APP_FIREBASE_STORAGE_BUCKET="fdc-office-a96e1.appspot.com"
+          REACT_APP_FIREBASE_LOCATION_ID="europe-west"
+          REACT_APP_FIREBASE_SENDER_ID=293810895106
+          REACT_APP_FIREBASE_APP_ID="1:293810895106:web:740dcb89fb1c2a89a26a1b"
+          REACT_APP_FIREBASE_KEY=${{ secrets.FIREBASE_KEY }}
+          EOF
+      - name: Build
+        run: pnpm run build
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: dist
+          path: dist
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: dist
+          path: dist
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          REACT_APP_FIREBASE_KEY: ${{ secrets.FIREBASE_KEY }}
