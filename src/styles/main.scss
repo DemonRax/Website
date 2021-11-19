@@ -1,0 +1,54 @@
+@use '_nord';
+
+body {
+  background-color: var(--snow-100);
+}
+
+.App {
+  font-family: 'Bookman Old Style', 'Georgia', 'Times New Roman', Times, serif;
+}
+
+a {
+  color: var(--frost-300);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--snow-400);
+}
+
+a:visited {
+  color: var(--frost-200);
+}
+
+.header {
+  font-size: 3rem;
+  background-color: var(--night-200);
+  color: var(--snow-100);
+  padding: 2rem 3rem;
+}
+
+.recipe-header {
+  font-size: 1.5rem;
+  background-color: var(--night-300);
+  color: var(--snow-200);
+  padding: 1rem 4rem;
+}
+
+.recipe-text {
+  background-color: var(--night-400);
+  color: var(--snow-300);
+  padding: 0 1rem;
+}
+
+.recipe-show {
+  height: 38rem;
+  overflow: hidden;
+  transition: height 500ms;
+}
+
+.recipe-hide {
+  height: 0;
+  overflow: hidden;
+  transition: height 500ms;
+}

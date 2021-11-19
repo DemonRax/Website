@@ -1,3 +1,10 @@
 import React from 'react';
 
-export const App: React.VFC = () => <div>test</div>;
+import { ClickAway } from './recipes/ClickAway';
+
+export const App: React.VFC = () => (
+    <div className={'App'}>
+        <div className={'header'}>ReactJS recipes</div>
+        <ClickAway />
+    </div>
+);
