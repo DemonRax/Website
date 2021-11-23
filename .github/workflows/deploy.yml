@@ -18,13 +18,12 @@ jobs:
       - name: Setup env
         run: |
           cat << EOF > .env
-          REACT_APP_FIREBASE_DOMAIN="fdc-office-a96e1.firebaseapp.com"
-          REACT_APP_FIREBASE_DATABASE="https://fdc-office-a96e1-default-rtdb.europe-west1.firebasedatabase.app"
-          REACT_APP_FIREBASE_PROJECT_ID="fdc-office-a96e1"
-          REACT_APP_FIREBASE_STORAGE_BUCKET="fdc-office-a96e1.appspot.com"
+          REACT_APP_FIREBASE_DOMAIN="reactrecipes-fd61b.firebaseapp.com"
+          REACT_APP_FIREBASE_PROJECT_ID="reactrecipes-fd61b"
+          REACT_APP_FIREBASE_STORAGE_BUCKET="reactrecipes-fd61b.appspot.com"
           REACT_APP_FIREBASE_LOCATION_ID="europe-west"
-          REACT_APP_FIREBASE_SENDER_ID=293810895106
-          REACT_APP_FIREBASE_APP_ID="1:293810895106:web:740dcb89fb1c2a89a26a1b"
+          REACT_APP_FIREBASE_SENDER_ID=78918954483
+          REACT_APP_FIREBASE_APP_ID="1:78918954483:web:42816c639f6b9fd8383686"
           REACT_APP_FIREBASE_KEY=${{ secrets.FIREBASE_KEY }}
           EOF
       - name: Build
