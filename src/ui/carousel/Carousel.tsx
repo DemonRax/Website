@@ -24,7 +24,7 @@ export const Carousel: React.VFC<CarouselProps> = ({ images }) => {
             <div className="carousel__container">
                 <ul className="carousel__track" ref={refTrack}>
                     {images.map((img, i) => (
-                        <li key={i} className={i === 0 ? 'carousel__slide current' : 'carousel__slide'}>
+                        <li key={i} className={'carousel__slide' + (i === 0) ? ' carousel__slide--current' : ''}>
                             <img className="carousel__image" src={img.src} width="800" height="400" alt={img.alt} />
                         </li>
                     ))}
@@ -37,7 +37,7 @@ export const Carousel: React.VFC<CarouselProps> = ({ images }) => {
                 {Array.from(Array(size).keys()).map((i: number) => (
                     <button
                         key={i}
-                        className={i === 0 ? 'carousel__page current' : 'carousel__page'}
+                        className={'carousel__page' + (i === 0) ? ' carousel__page--current' : ''}
                         onClick={nav(i)}
                     />
                 ))}
